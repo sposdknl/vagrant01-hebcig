@@ -1,0 +1,20 @@
+
+
+Tento projekt vytváří jednoduchý virtuální server pomocí Vagrantu a VirtualBoxu.  
+Na serveru je automaticky nainstalovaný webový server Apache a nakonfigurovaný přístup přes SSH pomocí veřejného klíče.
+
+
+Po spuštění `vagrant up` se automaticky:
+
+- vytvoří virtuální stroj s Debianem 12,
+- přenese můj veřejný SSH klíč do VM,
+- nainstaluje a spustí Apache2,
+- nastaví přesměrování portů:
+  - **localhost:8080 → VM:80** (pro web),
+  - **localhost:2206 → VM:22** (pro SSH připojení z PuTTY).
+
+Webserver bude po spuštění dostupný na http://localhost:8080
+Přístup přes SSH je možný pomocí PuTTY a klíče `.ppk`, který odpovídá veřejnému klíči `id_rsa.pub`, nahranému do VM.
+
+
+
