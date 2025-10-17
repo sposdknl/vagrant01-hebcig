@@ -1,37 +1,17 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/vMONzaIj)
-# VG1-APACHE
 
-The appearance of independent work - Vagrant, SSH and Apache
 
-Samostana prace - Vagrant, SSH, a Apache
+Tento projekt vytváří jednoduchý virtuální server pomocí Vagrantu a VirtualBoxu.  
+Na serveru je automaticky nainstalovaný webový server Apache a nakonfigurovaný přístup přes SSH pomocí veřejného klíče.
 
-- V Teams kliknete na odkaz Github Classrom, tim se Vam vytvori Vas repository pro toto zadani
-- Vytvorte si Clon Vaseho prvniho repository
-- Vytvorte v nem adresar pro Vas prvni server vytvoreny pomoci Vagrant
-- Do nej vlozte Vagrantfile z projektoveho repository - Vyberte si oblibenou Linux distribuci [2025-sposdk-osy](https://github.com/sposdknl/2025-sposdk-osy/)
-- Upravte Vagrantfile, aby fungoval portforward z portu 80 na port 8080
-- Zajistete import Vaseho SSH verejneho klice do instalovane VM
-- Zajistete instalaci web serveru Apache pomoci scriptu psaneho v bash
-- Vse bude konfigurovano automaticky, po vytvoreni VM bude funkcni SSH z Putty autentizovano pomoci SSH klice a na http://localhost:8080 bude bezet Webserver Apache 
-- Upravre README tak, aby bylo jasne co Vas projekt dela, strucne zdokumentujte.
-- Funkcni Vagrant deployment bude pridan do Vaseho repository na Guthub
 
-## Documentation
+Po spuštění `vagrant up` se automaticky:
 
-- [Vagrant - Shell Provisioner](https://developer.hashicorp.com/vagrant/docs/provisioning/shell)
-- [Vagrant - File Provisioner](https://developer.hashicorp.com/vagrant/docs/provisioning/file)
+- vytvoří virtuální stroj s Debianem 12,
+- přenese můj veřejný SSH klíč do VM,
+- nainstaluje a spustí Apache2,
+- nastaví přesměrování portů:
+  - **localhost:8080 → VM:80** (pro web),
+  - **localhost:2206 → VM:22** (pro SSH připojení z PuTTY).
 
-## Examples commands
-
-```console
-git clone https://github.com/sposdknl/VASPROJEKT
-cd VASPROJEKT && mkdir LinuxServer && cd LinuxServer
-cp ../2025-sposdk-osy/XYZ/Vagrantfile Vagrantfile
-vim Vagrantfile
-vim install-apache.sh
-vim .gitignore
-
-git add LinuxServer/*
-git commit "Add new VM + Automatizace"
-git push
-```
+Webserver bude po spuštění dostupný na http://localhost:8080
+Přístup přes SSH je možný pomocí PuTTY a klíče `.ppk`, který odpovídá veřejnému klíči `id_rsa.pub`, nahranému do VM.
